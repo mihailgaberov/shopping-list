@@ -35,7 +35,7 @@ input:focus {
   outline: none;
 }
 
-.container {
+.row {
   display: flex;
   padding: 0.5rem 0.875rem;
   align-items: center;

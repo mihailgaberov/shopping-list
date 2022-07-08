@@ -1,7 +1,7 @@
 import "./App.css";
 import { useOthers, useUpdateMyPresence, useList } from "./liveblocks.config";
 import { useState } from "react";
-
+import loader from "../assets/loader.svg";
 function WhoIsHere() {
   const others = useOthers();
 
@@ -30,7 +30,11 @@ export default function App() {
   const groceries = useList("groceries");
 
   if (groceries === null) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loading">
+        <img src={loader} alt="Loading" />
+      </div>
+    );
   }
 
   return (
@@ -56,7 +60,7 @@ export default function App() {
       <SomeoneIsTyping />
       {groceries.map((grocery, index) => {
         return (
-          <div key={index} className="container">
+          <div key={index} className="row">
             <div className="grocery">{grocery.text}</div>
 
             <button
