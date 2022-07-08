@@ -6,7 +6,7 @@ function WhoIsHere() {
   const others = useOthers();
 
   return (
-    <div className="who_is_here">
+    <div className="who-is-here">
       There are {others.count} other users online.
     </div>
   );
@@ -18,7 +18,7 @@ function SomeoneIsTyping() {
     .some((user) => user.presence?.isTyping);
 
   return (
-    <div className="someone_is_typing">
+    <div className="someone-is-typing">
       {someoneIsTyping ? "Someone is typing..." : ""}
     </div>
   );
@@ -56,11 +56,11 @@ export default function App() {
       <SomeoneIsTyping />
       {groceries.map((grocery, index) => {
         return (
-          <div key={index} className="todo_container">
-            <div className="todo">{grocery.text}</div>
+          <div key={index} className="container">
+            <div className="grocery">{grocery.text}</div>
 
             <button
-              className="delete_button"
+              className="delete-button"
               onClick={() => groceries.delete(index)}
             >
               ✕

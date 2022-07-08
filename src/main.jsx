@@ -8,7 +8,7 @@ import { LiveList } from "@liveblocks/client";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <RoomProvider
-      id="shopping-list"
+      id="shoppingList"
       initialStorage={{ groceries: new LiveList() }}
     >
       <App />
