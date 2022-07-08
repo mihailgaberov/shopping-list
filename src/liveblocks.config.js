@@ -7,4 +7,5 @@ const client = createClient({
   publicApiKey: API_KEY,
 });
 
-export const { RoomProvider } = createRoomContext(client);
+export const { RoomProvider, useOthers, useUpdateMyPresence } =
+  createRoomContext(client);
