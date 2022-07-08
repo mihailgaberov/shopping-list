@@ -1,5 +1,5 @@
 import "./App.css";
-import { useOthers, useUpdateMyPresence } from "./liveblocks.config";
+import { useOthers, useUpdateMyPresence, useList } from "./liveblocks.config";
 import { useState } from "react";
 
 function WhoIsHere() {
@@ -7,7 +7,7 @@ function WhoIsHere() {
 
   return (
     <div className="who_is_here">
-      There are {others.count} other users online
+      There are {others.count} other users online.
     </div>
   );
 }
@@ -27,13 +27,18 @@ function SomeoneIsTyping() {
 export default function App() {
   const [draft, setDraft] = useState("");
   const updateMyPresence = useUpdateMyPresence();
+  const groceries = useList("groceries");
+
+  if (groceries === null) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="container">
       <WhoIsHere />
       <input
         type="text"
-        placeholder="What needs to be done?"
+        placeholder="What do you need to buy?"
         value={draft}
         onChange={(e) => {
           setDraft(e.target.value);
@@ -42,12 +47,27 @@ export default function App() {
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             updateMyPresence({ isTyping: false });
+            groceries.push({ text: draft });
             setDraft("");
           }
         }}
         onBlur={() => updateMyPresence({ isTyping: false })}
       />
       <SomeoneIsTyping />
+      {groceries.map((grocery, index) => {
+        return (
+          <div key={index} className="todo_container">
+            <div className="todo">{grocery.text}</div>
+
+            <button
+              className="delete_button"
+              onClick={() => groceries.delete(index)}
+            >
+              ✕
+            </button>
+          </div>
+        );
+      })}
     </div>
   );
 }
