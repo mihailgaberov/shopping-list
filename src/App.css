@@ -59,17 +59,17 @@ input:focus {
   outline: none;
 }
 
-.who-is-here {
+/* .who-is-here {
   align-self: flex-end;
   font-size: 11px;
   color: #aaa;
 }
-
-.someone-is-typing {
+ */
+/* .someone-is-typing {
   position: absolute;
   font-size: 11px;
   color: #aaa;
-}
+} */
 
 .loading {
   position: absolute;

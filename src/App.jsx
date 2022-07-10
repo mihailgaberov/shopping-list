@@ -1,28 +1,12 @@
-import "./App.css";
-import { useOthers, useUpdateMyPresence, useList } from "./liveblocks.config";
 import { useState } from "react";
 import loader from "../assets/loader.svg";
-function WhoIsHere() {
-  const others = useOthers();
+import { useList, useUpdateMyPresence } from "./liveblocks.config";
 
-  return (
-    <div className="who-is-here">
-      There are {others.count} other users online.
-    </div>
-  );
-}
+import { Avatars } from "./components/Avatars";
+import { SomeoneIsTyping } from "./components/SomeoneIsTyping";
+import { WhoIsHere } from "./components/WhoIsHere";
 
-function SomeoneIsTyping() {
-  const someoneIsTyping = useOthers()
-    .toArray()
-    .some((user) => user.presence?.isTyping);
-
-  return (
-    <div className="someone-is-typing">
-      {someoneIsTyping ? "Someone is typing..." : ""}
-    </div>
-  );
-}
+import "./App.css";
 
 export default function App() {
   const [draft, setDraft] = useState("");
@@ -40,6 +24,7 @@ export default function App() {
   return (
     <div className="container">
       <WhoIsHere />
+      <Avatars />
       <input
         type="text"
         placeholder="What do you need to buy?"
