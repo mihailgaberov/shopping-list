@@ -7,7 +7,7 @@ export function Avatars() {
   const currentUser = useSelf();
   const hasMoreUsers = users.length > 3;
 
-  console.log({ users });
+  console.log(">>> ", users);
 
   return (
     <div className={styles.container}>
