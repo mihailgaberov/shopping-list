@@ -20,5 +20,5 @@ export default async function auth(req, res) {
       name: "Ada Lovelace",
     },
   });
-  return res.status(result.status).end(result.body);
+  return res.status(PPresult.status).end(result.body);
 }
