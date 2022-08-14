@@ -61,8 +61,8 @@ export default function App() {
       {groceries.map((grocery, index) => {
         return (
           <div key={index} className="row">
+            <div className="ordering">{index + 1}.</div>
             <div className="grocery">{grocery.text}</div>
-
             <button
               className="delete-button"
               onClick={() => groceries.delete(index)}
