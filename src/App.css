@@ -37,7 +37,7 @@ input:focus {
 
 .row {
   display: flex;
-  font-size: large;
+  font-size: 1.4rem;
   padding: 0.5rem 0.875rem;
   align-items: center;
   justify-content: space-between;
@@ -50,11 +50,14 @@ input:focus {
 .delete-button {
   padding: 0;
   margin: 0;
-  font-size: 16px;
+  font-size: 1.4rem;
   border: 0 solid;
   cursor: pointer;
   appearance: button;
-  background-color: transparent;
+  background-color: lightgray;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
 }
 
 .delete-button:focus {
