@@ -38,7 +38,7 @@ input:focus {
 .row {
   display: flex;
   font-size: 1.4rem;
-  padding: 0.5rem 0.875rem;
+  padding: 0.5rem 0;
   align-items: center;
   justify-content: space-between;
 }
@@ -55,7 +55,7 @@ input:focus {
   cursor: pointer;
   appearance: button;
   background-color: lightgray;
-  width: 48px;
+  min-width: 48px;
   height: 48px;
   border-radius: 50%;
 }
@@ -93,5 +93,5 @@ input:focus {
 
 .ordering {
   font-weight: 600;
-  margin: 0 1em;
+  margin-right: 1em;
 }
