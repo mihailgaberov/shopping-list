@@ -15,8 +15,8 @@ body {
 input {
   box-sizing: border-box;
   padding: 0.5rem 0.875rem;
-  margin: 0.5rem 0;
-  width: 100%;
+  margin: 0.5rem auto;
+  width: 90%;
   background-color: white;
   box-shadow: 0 0 #000, 0 0 #000, 0 0 #000, 0 0 #000,
     0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -37,8 +37,8 @@ input:focus {
 
 .row {
   display: flex;
-  font-size: 1.4rem;
-  padding: 0.5rem 0;
+  font-size: large;
+  padding: 0.5rem 1.2rem 0.5rem 0;
   align-items: center;
   justify-content: space-between;
 }
@@ -62,18 +62,6 @@ input:focus {
 
 .delete-button:focus {
   outline: none;
-}
-
-.who-is-here {
-  align-self: flex-end;
-  font-size: 11px;
-  color: #aaa;
-}
-
-.someone-is-typing {
-  position: absolute;
-  font-size: 11px;
-  color: #aaa;
 }
 
 .loading {
