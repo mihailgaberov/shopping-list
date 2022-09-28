@@ -38,7 +38,7 @@ input:focus {
 .row {
   display: flex;
   font-size: large;
-  padding: 0.5rem 1.2rem 0.5rem 0;
+  padding: 0.5rem 1.2rem;
   align-items: center;
   justify-content: space-between;
 }
