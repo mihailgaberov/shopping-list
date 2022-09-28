@@ -1,4 +1,4 @@
-import { Avatar } from "../Avatar";
+import Avatar from "boring-avatars";
 import { useOthers, useSelf } from "../../liveblocks.config";
 import styles from "./avatars.module.scss";
 
@@ -7,14 +7,16 @@ export function Avatars() {
   const currentUser = useSelf();
   const hasMoreUsers = users.length > 3;
 
-  console.log(">>> ", users);
-
   return (
     <div className={styles.container}>
-      {users.slice(0, 3).map(({ connectionId, info }) => {
-        console.log(">>> info->", info);
+      {users.slice(0, 3).map(({ connectionId }) => {
         return (
-          <Avatar key={connectionId} picture={info.picture} name={info.name} />
+          <Avatar
+            key={connectionId}
+            name="Other"
+            variant="beam"
+            colors={["#8D9C9D", "#E00B5B", "#F5B04B", "#FCDFBD", "#45373E"]}
+          />
         );
       })}
 
@@ -22,7 +24,11 @@ export function Avatars() {
 
       {currentUser && (
         <div>
-          <Avatar picture={currentUser.info?.picture} name="You" />
+          <Avatar
+            name="You"
+            variant="beam"
+            colors={["#8D9C9D", "#E00B5B", "#F5B04B", "#FCDFBD", "#45373E"]}
+          />
         </div>
       )}
     </div>
