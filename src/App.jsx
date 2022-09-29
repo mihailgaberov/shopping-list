@@ -46,7 +46,6 @@ export default function App() {
       />
       <SomeoneIsTyping />
       {reversedGroceries.map((grocery, index) => {
-        console.log(">>> ", grocery.text, groceries.indexOf(grocery));
         return (
           <div key={index} className="row">
             <div className="ordering">{index + 1}.</div>
