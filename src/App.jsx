@@ -21,7 +21,7 @@ export default function App() {
     );
   }
 
-  const reversedGroceries = groceries.map((g) => g).reverse();
+  const reversedGroceries = groceries.toArray().reverse();
 
   return (
     <div className="container">
@@ -46,13 +46,14 @@ export default function App() {
       />
       <SomeoneIsTyping />
       {reversedGroceries.map((grocery, index) => {
+        console.log(">>> ", grocery.text, groceries.indexOf(grocery));
         return (
           <div key={index} className="row">
             <div className="ordering">{index + 1}.</div>
             <div className="grocery">{grocery.text}</div>
             <button
               className="delete-button"
-              onClick={() => reversedGroceries.delete(index)}
+              onClick={() => groceries.delete(groceries.indexOf(grocery))}
             >
               ✕
             </button>
