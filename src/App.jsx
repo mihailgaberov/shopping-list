@@ -21,6 +21,8 @@ export default function App() {
     );
   }
 
+  const reversedGroceries = groceries.map((g) => g).reverse();
+
   return (
     <div className="container">
       <WhoIsHere />
@@ -43,7 +45,7 @@ export default function App() {
         onBlur={() => updateMyPresence({ isTyping: false })}
       />
       <SomeoneIsTyping />
-      {groceries.map((grocery, index) => {
+      {reversedGroceries.map((grocery, index) => {
         return (
           <div key={index} className="row">
             <div className="ordering">{index + 1}.</div>
