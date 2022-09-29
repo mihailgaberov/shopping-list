@@ -52,7 +52,7 @@ export default function App() {
             <div className="grocery">{grocery.text}</div>
             <button
               className="delete-button"
-              onClick={() => groceries.delete(index)}
+              onClick={() => reversedGroceries.delete(index)}
             >
               ✕
             </button>
