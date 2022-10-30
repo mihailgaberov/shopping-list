@@ -10,6 +10,7 @@ import "./App.css";
 
 export default function App() {
   const [draft, setDraft] = useState("");
+  const [editItemIdx, setEditItem] = useState(-1);
   const updateMyPresence = useUpdateMyPresence();
   const groceries = useList("groceries");
 
@@ -22,6 +23,25 @@ export default function App() {
   }
 
   const reversedGroceries = groceries.toArray().reverse();
+
+  const fillTextInput = (elementIndex) => {
+    setDraft(groceries.get(elementIndex).text);
+    setEditItem(elementIndex);
+    console.log(">>> set edit item idx: ", elementIndex);
+  };
+
+  const updateGroceriesList = (elementText) => {
+    if (elementText === "") {
+      return;
+    }
+    const currentItem = groceries.get(editItemIdx);
+    if (currentItem) {
+      currentItem.text = elementText;
+      setEditItem(-1);
+    } else {
+      groceries.push({ text: elementText });
+    }
+  };
 
   return (
     <div className="container">
@@ -38,7 +58,7 @@ export default function App() {
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             updateMyPresence({ isTyping: false });
-            groceries.push({ text: draft });
+            updateGroceriesList(draft);
             setDraft("");
           }
         }}
@@ -49,7 +69,12 @@ export default function App() {
         return (
           <div key={index} className="row">
             <div className="ordering">{index + 1}.</div>
-            <div className="grocery">{grocery.text}</div>
+            <div
+              className="grocery"
+              onClick={() => fillTextInput(groceries.indexOf(grocery))}
+            >
+              {grocery.text}
+            </div>
             <button
               className="delete-button"
               onClick={() => groceries.delete(groceries.indexOf(grocery))}
