@@ -27,7 +27,6 @@ export default function App() {
   const fillTextInput = (elementIndex) => {
     setDraft(groceries.get(elementIndex).text);
     setEditItem(elementIndex);
-    console.log(">>> set edit item idx: ", elementIndex);
   };
 
   const updateGroceriesList = (elementText) => {
@@ -35,9 +34,10 @@ export default function App() {
       return;
     }
     const currentItem = groceries.get(editItemIdx);
+
     if (currentItem) {
-      currentItem.text = elementText;
       setEditItem(-1);
+      groceries.set(groceries.indexOf(currentItem), { text: elementText });
     } else {
       groceries.push({ text: elementText });
     }
