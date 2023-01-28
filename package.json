@@ -2,6 +2,7 @@
   "name": "shopping-list",
   "private": true,
   "version": "0.0.0",
+  "author": "Mihail Gaberov <m1h1lgb3r0v@duck.com> (https://mihailgaberov.com/)",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
