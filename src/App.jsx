@@ -43,6 +43,19 @@ export default function App() {
     }
   };
 
+  const handleOnChange = (e) => {
+    setDraft(e.target.value);
+    updateMyPresence({ isTyping: true });
+  };
+
+  const handleOnKeyDown = (e) => {
+    if (e.key === "Enter") {
+      updateMyPresence({ isTyping: false });
+      updateGroceriesList(draft);
+      setDraft("");
+    }
+  };
+
   return (
     <div className="container">
       <WhoIsHere />
@@ -51,17 +64,8 @@ export default function App() {
         type="text"
         placeholder="What do you need to buy?"
         value={draft}
-        onChange={(e) => {
-          setDraft(e.target.value);
-          updateMyPresence({ isTyping: true });
-        }}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            updateMyPresence({ isTyping: false });
-            updateGroceriesList(draft);
-            setDraft("");
-          }
-        }}
+        onChange={handleOnChange}
+        onKeyDown={handleOnKeyDown}
         onBlur={() => updateMyPresence({ isTyping: false })}
       />
       <SomeoneIsTyping />
