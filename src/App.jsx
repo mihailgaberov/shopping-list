@@ -5,6 +5,7 @@ import { useList, useUpdateMyPresence } from "./liveblocks.config";
 import { Avatars } from "./components/Avatars";
 import { SomeoneIsTyping } from "./components/SomeoneIsTyping";
 import { WhoIsHere } from "./components/WhoIsHere";
+import { Footer } from "./components/Footer";
 
 import "./App.css";
 
@@ -56,6 +57,10 @@ export default function App() {
     }
   };
 
+  const handleOnBlur = () => {
+    updateMyPresence({ isTyping: false })
+  };
+
   return (
     <div className="container">
       <WhoIsHere />
@@ -66,7 +71,7 @@ export default function App() {
         value={draft}
         onChange={handleOnChange}
         onKeyDown={handleOnKeyDown}
-        onBlur={() => updateMyPresence({ isTyping: false })}
+        onBlur={handleOnBlur}
       />
       <SomeoneIsTyping />
       {reversedGroceries.map((grocery, index) => {
@@ -88,6 +93,7 @@ export default function App() {
           </div>
         );
       })}
+      <Footer />
     </div>
   );
 }
