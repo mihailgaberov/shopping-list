@@ -6,8 +6,6 @@ export function SomeoneIsTyping() {
     .toArray()
     .some((user) => user.presence?.isTyping);
 
-  console.log(">>> someoneIsTyping", someoneIsTyping)
-
   return (
     <div className={styles.container}>
       {someoneIsTyping ? "Someone is typing..." : ""}
