@@ -63,6 +63,7 @@ export default function App() {
 
   return (
     <div className="container">
+      <button className="undo-button">Undo</button>
       <WhoIsHere />
       <Avatars />
       <input
