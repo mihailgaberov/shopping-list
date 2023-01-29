@@ -30,6 +30,8 @@ export default function App() {
     setEditItem(elementIndex);
   };
 
+  const addItem = (item) => groceries.push(item);
+
   const updateGroceriesList = (elementText) => {
     if (elementText === "") {
       return;
@@ -40,7 +42,7 @@ export default function App() {
       setEditItem(-1);
       groceries.set(groceries.indexOf(currentItem), { text: elementText });
     } else {
-      groceries.push({ text: elementText });
+      addItem({text: elementText});
     }
   };
 
@@ -59,6 +61,10 @@ export default function App() {
 
   const handleOnBlur = () => {
     updateMyPresence({ isTyping: false })
+  };
+
+  const handleDeleteItem = (grocery) => {
+    groceries.delete(groceries.indexOf(grocery))
   };
 
   return (
@@ -87,7 +93,7 @@ export default function App() {
             </div>
             <button
               className="delete-button"
-              onClick={() => groceries.delete(groceries.indexOf(grocery))}
+              onClick={() => handleDeleteItem(grocery)}
             >
               ✕
             </button>
