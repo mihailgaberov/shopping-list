@@ -1,6 +1,12 @@
 import { useState } from "react";
 import loader from "../assets/loader.svg";
-import { useList, useUpdateMyPresence } from "./liveblocks.config";
+import {
+  useList,
+  useUpdateMyPresence,
+  useHistory,
+    useCanUndo,
+  useCanRedo
+} from "./liveblocks.config";
 
 import { Avatars } from "./components/Avatars";
 import { SomeoneIsTyping } from "./components/SomeoneIsTyping";
@@ -14,12 +20,15 @@ export default function App() {
   const [editItemIdx, setEditItem] = useState(-1);
   const updateMyPresence = useUpdateMyPresence();
   const groceries = useList("groceries");
+  const { undo, redo } = useHistory();
+  const canRedo = useCanRedo();
+  const canUndo = useCanUndo();
 
   if (groceries === null) {
     return (
-      <div className="loading">
-        <img src={loader} alt="Loading" />
-      </div>
+        <div className="loading">
+          <img src={loader} alt="Loading"/>
+        </div>
     );
   }
 
@@ -42,7 +51,7 @@ export default function App() {
       setEditItem(-1);
       groceries.set(groceries.indexOf(currentItem), { text: elementText });
     } else {
-      addItem({text: elementText});
+      addItem({ text: elementText });
     }
   };
 
@@ -68,39 +77,42 @@ export default function App() {
   };
 
   return (
-    <div className="container">
-      <button className="undo-button">Undo</button>
-      <WhoIsHere />
-      <Avatars />
-      <input
-        type="text"
-        placeholder="What do you need to buy?"
-        value={draft}
-        onChange={handleOnChange}
-        onKeyDown={handleOnKeyDown}
-        onBlur={handleOnBlur}
-      />
-      <SomeoneIsTyping />
-      {reversedGroceries.map((grocery, index) => {
-        return (
-          <div key={index} className="row">
-            <div className="ordering">{index + 1}.</div>
-            <div
-              className="grocery"
-              onClick={() => fillTextInput(groceries.indexOf(grocery))}
-            >
-              {grocery.text}
-            </div>
-            <button
-              className="delete-button"
-              onClick={() => handleDeleteItem(grocery)}
-            >
-              ✕
-            </button>
-          </div>
-        );
-      })}
-      <Footer />
-    </div>
+      <div className="container">
+        <div className="history-controls">
+          {canUndo && <button className="manage-history-btn" onClick={() => undo()}>Undo</button>}
+          {canRedo && <button className="manage-history-btn" onClick={() => redo()}>Redo</button>}
+        </div>
+        <WhoIsHere/>
+        <Avatars/>
+        <input
+            type="text"
+            placeholder="What do you need to buy?"
+            value={draft}
+            onChange={handleOnChange}
+            onKeyDown={handleOnKeyDown}
+            onBlur={handleOnBlur}
+        />
+        <SomeoneIsTyping/>
+        {reversedGroceries.map((grocery, index) => {
+          return (
+              <div key={index} className="row">
+                <div className="ordering">{index + 1}.</div>
+                <div
+                    className="grocery"
+                    onClick={() => fillTextInput(groceries.indexOf(grocery))}
+                >
+                  {grocery.text}
+                </div>
+                <button
+                    className="delete-button"
+                    onClick={() => handleDeleteItem(grocery)}
+                >
+                  ✕
+                </button>
+              </div>
+          );
+        })}
+        <Footer/>
+      </div>
   );
 }

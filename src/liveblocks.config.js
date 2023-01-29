@@ -13,4 +13,7 @@ export const {
   useUpdateMyPresence,
   useList,
   useSelf,
+  useCanRedo,
+  useCanUndo,
+  useHistory,
 } = createRoomContext(client);

@@ -62,7 +62,7 @@ input:focus {
 .delete-button:focus {
   outline: none;
 }
-.undo-button {
+.manage-history-btn {
   padding: 0;
   margin-right: 1.2rem;
   font-size: 1.4rem;
@@ -78,7 +78,7 @@ input:focus {
   align-self: flex-end;
 }
 
-.undo-button:focus {
+.manage-history-btn:focus {
   outline: none;
 }
 
@@ -100,4 +100,9 @@ input:focus {
 .ordering {
   font-weight: 600;
   margin-right: 1em;
+}
+
+.history-controls {
+  display: flex;
+  justify-content: flex-end;
 }

@@ -275,21 +275,21 @@
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
 "@liveblocks/client@^0.17.5":
-  version "0.17.5"
-  resolved "https://registry.yarnpkg.com/@liveblocks/client/-/client-0.17.5.tgz#00513c9b99b3987e3e4861613e88f9ca5a766c3e"
-  integrity sha512-a3zyT2x8oW/i+OC3U38rMzQRbiO0p80qmWjXdW6F5OkAV7MAyhZyhwG52oO5sHV3QPjrczjXPXdnTzoxZ5sx3Q==
+  version "0.17.11"
+  resolved "https://registry.yarnpkg.com/@liveblocks/client/-/client-0.17.11.tgz#5130644a11827c4dfa0014bb4ab080e9bdd2e833"
+  integrity sha512-ToVzVa6KZE+TnElkV58uTPSKymgQ/fC6mRPtNKGA/SHC8BdgNbULHBV5Van4XWKnoC4BMyC+TAcukwEaeNxREw==
 
 "@liveblocks/node@^0.17.5":
-  version "0.17.5"
-  resolved "https://registry.yarnpkg.com/@liveblocks/node/-/node-0.17.5.tgz#36dc28ce480a166d229e04b14e5d947cdc31f7f6"
-  integrity sha512-noCWhf0jVxBIZ3CIM52ODchMumyY7/j6UIkySnoaAwKYYwzn0cNYN6kqZnozClIA9o44XsSxelab5PPD+3sGQA==
+  version "0.17.11"
+  resolved "https://registry.yarnpkg.com/@liveblocks/node/-/node-0.17.11.tgz#c91d635b7d0654f451053128fb26c981cf52d758"
+  integrity sha512-9ws15L5lZzrJaEQHCQJH9tYZuQR3DJHQ92JrX+GJPOMAxt9tGAqhnXuZGohywss5YALoF0Prw+glIwrtn9xVZw==
   dependencies:
     node-fetch "^2.6.1"
 
 "@liveblocks/react@^0.17.5":
-  version "0.17.5"
-  resolved "https://registry.yarnpkg.com/@liveblocks/react/-/react-0.17.5.tgz#6793ae7261fc6ecdb3ae795c491eaa876ce94d5b"
-  integrity sha512-KcNaIxO37ztJerCKzwxd2+0NQwiYxCvxoxlojMBafjVKoIk5aozNiUMft5TVCO2bjp/tA+S40KlTh+T2GRjPQQ==
+  version "0.17.11"
+  resolved "https://registry.yarnpkg.com/@liveblocks/react/-/react-0.17.11.tgz#7f45e46a549a50875ffbbc229a8c313b820930aa"
+  integrity sha512-WYFLJTN+3h24ODyOKcPHZU80mwi/l9BWDsrig/bIFgr9w8wIk/cci30ngyeIglwP0LLcgte073dRNf4pkpFf5Q==
 
 "@next/env@12.2.2":
   version "12.2.2"
@@ -810,9 +810,9 @@ next@^12.2.2:
     "@next/swc-win32-x64-msvc" "12.2.2"
 
 node-fetch@^2.6.1:
-  version "2.6.7"
-  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.7.tgz#24de9fba827e3b4ae44dc8b20256a379160052ad"
-  integrity sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==
+  version "2.6.8"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.8.tgz#a68d30b162bc1d8fd71a367e81b997e1f4d4937e"
+  integrity sha512-RZ6dBYuj8dRSfxpUSu+NsdF1dpPpluJxwOp+6IoDp/sH2QNDSvurYsAa+F1WxY2RjA1iP93xhcsUoYbF2XBqVg==
   dependencies:
     whatwg-url "^5.0.0"
 
