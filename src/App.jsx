@@ -79,8 +79,8 @@ export default function App() {
   return (
       <div className="container">
         <div className="history-controls">
-          {canUndo && <button className="manage-history-btn" onClick={() => undo()}>Undo</button>}
-          {canRedo && <button className="manage-history-btn" onClick={() => redo()}>Redo</button>}
+          <button className="manage-history-btn" onClick={() => undo()} disabled={!canUndo}>Undo</button>
+          <button className="manage-history-btn" onClick={() => redo()} disabled={!canRedo}>Redo</button>
         </div>
         <WhoIsHere/>
         <Avatars/>
