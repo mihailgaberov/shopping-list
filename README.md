@@ -9,4 +9,4 @@ Do you remember what your wife told you to buy? I mean, do you remember the spec
 - liveblocks.io
 
 ### Screenshots
-![Mobile View](https://github.com/mihailgaberov/orderbook/blob/main/assets/screenshot.jpg)
+![Mobile View](https://github.com/mihailgaberov/shopping-list/blob/main/assets/screenshot.jpg)
