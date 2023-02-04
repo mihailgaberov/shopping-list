@@ -76,7 +76,9 @@ export default function App() {
 
   return (
       <div className="container">
+
         <div className="history-controls">
+          <SomeoneIsTyping/>
           <button className="manage-history-btn" onClick={() => undo()} disabled={!canUndo}>Undo</button>
           <button className="manage-history-btn" onClick={() => redo()} disabled={!canRedo}>Redo</button>
         </div>
@@ -90,7 +92,6 @@ export default function App() {
             onKeyDown={handleOnKeyDown}
             onBlur={handleOnBlur}
         />
-        <SomeoneIsTyping/>
         {groceries.map((grocery, index) => {
           return (
               <div key={index} className="row">
