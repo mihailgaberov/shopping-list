@@ -32,8 +32,6 @@ export default function App() {
     );
   }
 
-  const reversedGroceries = groceries.toArray().reverse();
-
   const fillTextInput = (elementIndex) => {
     setDraft(groceries.get(elementIndex).text);
     setEditItem(elementIndex);
@@ -93,7 +91,7 @@ export default function App() {
             onBlur={handleOnBlur}
         />
         <SomeoneIsTyping/>
-        {reversedGroceries.map((grocery, index) => {
+        {groceries.map((grocery, index) => {
           return (
               <div key={index} className="row">
                 <div className="ordering">{index + 1}.</div>
