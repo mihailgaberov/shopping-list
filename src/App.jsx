@@ -78,11 +78,11 @@ export default function App() {
       <div className="container">
 
         <div className="history-controls">
-          <SomeoneIsTyping/>
           <button className="manage-history-btn" onClick={() => undo()} disabled={!canUndo}>Undo</button>
           <button className="manage-history-btn" onClick={() => redo()} disabled={!canRedo}>Redo</button>
         </div>
         <WhoIsHere/>
+        <SomeoneIsTyping/>
         <Avatars/>
         <input
             type="text"
