@@ -32,8 +32,6 @@ export default function App() {
     );
   }
 
-  const reversedGroceries = groceries.toArray().reverse();
-
   const fillTextInput = (elementIndex) => {
     setDraft(groceries.get(elementIndex).text);
     setEditItem(elementIndex);
@@ -78,11 +76,13 @@ export default function App() {
 
   return (
       <div className="container">
+
         <div className="history-controls">
           <button className="manage-history-btn" onClick={() => undo()} disabled={!canUndo}>Undo</button>
           <button className="manage-history-btn" onClick={() => redo()} disabled={!canRedo}>Redo</button>
         </div>
         <WhoIsHere/>
+        <SomeoneIsTyping/>
         <Avatars/>
         <input
             type="text"
@@ -92,8 +92,7 @@ export default function App() {
             onKeyDown={handleOnKeyDown}
             onBlur={handleOnBlur}
         />
-        <SomeoneIsTyping/>
-        {reversedGroceries.map((grocery, index) => {
+        {groceries.map((grocery, index) => {
           return (
               <div key={index} className="row">
                 <div className="ordering">{index + 1}.</div>
