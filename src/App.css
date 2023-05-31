@@ -47,6 +47,10 @@ input:focus {
   flex-grow: 1;
 }
 
+.grocery:hover {
+  cursor: pointer;
+}
+
 .delete-button {
   padding: 0;
   margin: 0;
