@@ -32,9 +32,21 @@ export default function App() {
     );
   }
 
+  const copyToClipboard = (textToCopy) => {
+    navigator.clipboard.writeText(textToCopy)
+        .then(() => {
+          console.log('Text copied to clipboard');
+        })
+        .catch((error) => {
+          console.error('Error copying text to clipboard:', error);
+        });
+  };
+
   const fillTextInput = (elementIndex) => {
-    setDraft(groceries.get(elementIndex).text);
+    const textCopy = groceries.get(elementIndex).text
+    setDraft(textCopy);
     setEditItem(elementIndex);
+    copyToClipboard(textCopy);
   };
 
   const addItem = (item) => groceries.push(item);
