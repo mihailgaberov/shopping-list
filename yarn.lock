@@ -286,22 +286,33 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
-"@liveblocks/client@^0.17.5":
-  version "0.17.11"
-  resolved "https://registry.yarnpkg.com/@liveblocks/client/-/client-0.17.11.tgz#5130644a11827c4dfa0014bb4ab080e9bdd2e833"
-  integrity sha512-ToVzVa6KZE+TnElkV58uTPSKymgQ/fC6mRPtNKGA/SHC8BdgNbULHBV5Van4XWKnoC4BMyC+TAcukwEaeNxREw==
+"@liveblocks/client@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@liveblocks/client/-/client-1.0.0.tgz#c6b9cff4288fbe57771c032f7ff8df6af22e6866"
+  integrity sha512-nDjwNqzYdHMjSakrm8f6mk5EEt6SAt5SaaSTRZ5aKVqLZ99FTAWqrIZyAvHap4yMwNGhpfH5FeYzVCzxjvt+NA==
+  dependencies:
+    "@liveblocks/core" "1.0.0"
 
-"@liveblocks/node@^0.17.5":
-  version "0.17.11"
-  resolved "https://registry.yarnpkg.com/@liveblocks/node/-/node-0.17.11.tgz#c91d635b7d0654f451053128fb26c981cf52d758"
-  integrity sha512-9ws15L5lZzrJaEQHCQJH9tYZuQR3DJHQ92JrX+GJPOMAxt9tGAqhnXuZGohywss5YALoF0Prw+glIwrtn9xVZw==
+"@liveblocks/core@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@liveblocks/core/-/core-1.0.0.tgz#a977f4fb45c403357ff96d50ece3bf7f4a2f30ee"
+  integrity sha512-Y7shkoOqc629/6dAjqTQkWm65GDCm72NBs1NTM3m6SieBAzK5NJ0pAAeL4Ct1HB85rO1gbl6hbAMwXtJkpWVrA==
+
+"@liveblocks/node@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@liveblocks/node/-/node-1.0.0.tgz#673f1226fbfb687a16e7eb1629099f0428332ad0"
+  integrity sha512-GKvfrY02eJ+YI7Q8psz5hD80J3gIridmeTA9UYV6n+NYbCp0Jo2GS1LlUTtzw8mto6cRFAG6gVPSe8tVLej+Mw==
   dependencies:
     node-fetch "^2.6.1"
 
-"@liveblocks/react@^0.17.5":
-  version "0.17.11"
-  resolved "https://registry.yarnpkg.com/@liveblocks/react/-/react-0.17.11.tgz#7f45e46a549a50875ffbbc229a8c313b820930aa"
-  integrity sha512-WYFLJTN+3h24ODyOKcPHZU80mwi/l9BWDsrig/bIFgr9w8wIk/cci30ngyeIglwP0LLcgte073dRNf4pkpFf5Q==
+"@liveblocks/react@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@liveblocks/react/-/react-1.0.0.tgz#403ae74f21d7c64f4eba7bfbe00c86950a557c86"
+  integrity sha512-1zl4uVBQFQlbTnaMmfO0kbFQd0U3lfBqoOxz5Y1EXQobLEmnpDI86XGMCTeUYHjVGmdYLy7zaS7Fh2avp7OalQ==
+  dependencies:
+    "@liveblocks/client" "1.0.0"
+    "@liveblocks/core" "1.0.0"
+    use-sync-external-store "^1.2.0"
 
 "@next/env@12.3.4":
   version "12.3.4"
@@ -988,7 +999,7 @@ update-browserslist-db@^1.0.9:
     escalade "^3.1.1"
     picocolors "^1.0.0"
 
-use-sync-external-store@1.2.0:
+use-sync-external-store@1.2.0, use-sync-external-store@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/use-sync-external-store/-/use-sync-external-store-1.2.0.tgz#7dbefd6ef3fe4e767a0cf5d7287aacfb5846928a"
   integrity sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==

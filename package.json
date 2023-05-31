@@ -9,9 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@liveblocks/client": "^0.17.5",
-    "@liveblocks/node": "^0.17.5",
-    "@liveblocks/react": "^0.17.5",
+    "@liveblocks/client": "1.0.0",
+    "@liveblocks/node": "1.0.0",
+    "@liveblocks/react": "1.0.0",
     "boring-avatars": "^1.7.0",
     "next": "^12.2.2",
     "react": "^18.0.0",
