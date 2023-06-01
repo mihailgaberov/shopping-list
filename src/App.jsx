@@ -14,6 +14,7 @@ import { WhoIsHere } from "./components/WhoIsHere";
 import { Footer } from "./components/Footer";
 
 import "./App.css";
+import { ANIMATION_DURATION, Notifications, TIMEOUT, useNotifications } from "./components/Notifications"
 
 export default function App() {
   const [draft, setDraft] = useState("");
@@ -23,6 +24,8 @@ export default function App() {
   const { undo, redo } = useHistory();
   const canRedo = useCanRedo();
   const canUndo = useCanUndo();
+  const { props, add } = useNotifications();
+
 
   if (groceries === null) {
     return (
@@ -36,9 +39,11 @@ export default function App() {
     navigator.clipboard.writeText(textToCopy)
         .then(() => {
           console.log('Text copied to clipboard');
+          add({ title: 'Success', content: 'Text copied to clipboard', timeout: TIMEOUT, type: 'success' })
         })
         .catch((error) => {
           console.error('Error copying text to clipboard:', error);
+          add({ title: 'Error', content: `Error copying text to clipboard: ${error}`, timeout: TIMEOUT, type: 'error' })
         });
   };
 
@@ -104,6 +109,7 @@ export default function App() {
             onKeyDown={handleOnKeyDown}
             onBlur={handleOnBlur}
         />
+        <Notifications {...props} animationDuration={ANIMATION_DURATION}/>
         {groceries.map((grocery, index) => {
           return (
               <div key={index} className="row">
