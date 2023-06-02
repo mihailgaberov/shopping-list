@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NotificationType, useNotify } from "@yoavik/notify"
 import loader from "../assets/loader.svg";
 import {
   useList,
@@ -14,7 +15,6 @@ import { WhoIsHere } from "./components/WhoIsHere";
 import { Footer } from "./components/Footer";
 
 import "./App.css";
-import { ANIMATION_DURATION, Notifications, TIMEOUT, useNotifications } from "./components/Notifications"
 
 export default function App() {
   const [draft, setDraft] = useState("");
@@ -24,7 +24,7 @@ export default function App() {
   const { undo, redo } = useHistory();
   const canRedo = useCanRedo();
   const canUndo = useCanUndo();
-  const { props, add } = useNotifications();
+    const { add } = useNotify();
 
 
   if (groceries === null) {
@@ -38,12 +38,18 @@ export default function App() {
   const copyToClipboard = (textToCopy) => {
     navigator.clipboard.writeText(textToCopy)
         .then(() => {
-          console.log('Text copied to clipboard');
-          add({ title: 'Success', content: 'Text copied to clipboard', timeout: TIMEOUT, type: 'success' })
+          console.log('Text copied to clipboard.');
+            add({
+                title: 'Info Notification',
+                content: 'Text copied to clipboard.',
+                timeout: 5000,
+                type: NotificationType.info,
+                id: ""
+            });
         })
         .catch((error) => {
           console.error('Error copying text to clipboard:', error);
-          add({ title: 'Error', content: `Error copying text to clipboard: ${error}`, timeout: TIMEOUT, type: 'error' })
+          add({ title: 'Error Notification', content: `Error copying text to clipboard: ${error}`, timeout: 5000, type: NotificationType.error, id: '' })
         });
   };
 
@@ -109,7 +115,7 @@ export default function App() {
             onKeyDown={handleOnKeyDown}
             onBlur={handleOnBlur}
         />
-        <Notifications {...props} animationDuration={ANIMATION_DURATION}/>
+
         {groceries.map((grocery, index) => {
           return (
               <div key={index} className="row">
