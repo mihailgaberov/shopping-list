@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NotificationType, useNotify } from "@yoavik/notify"
 import loader from "../assets/loader.svg";
 import {
   useList,
@@ -23,6 +24,8 @@ export default function App() {
   const { undo, redo } = useHistory();
   const canRedo = useCanRedo();
   const canUndo = useCanUndo();
+    const { add } = useNotify();
+
 
   if (groceries === null) {
     return (
@@ -35,10 +38,18 @@ export default function App() {
   const copyToClipboard = (textToCopy) => {
     navigator.clipboard.writeText(textToCopy)
         .then(() => {
-          console.log('Text copied to clipboard');
+          console.log('Text copied to clipboard.');
+            add({
+                title: 'Info Notification',
+                content: 'Text copied to clipboard.',
+                timeout: 5000,
+                type: NotificationType.info,
+                id: ""
+            });
         })
         .catch((error) => {
           console.error('Error copying text to clipboard:', error);
+          add({ title: 'Error Notification', content: `Error copying text to clipboard: ${error}`, timeout: 5000, type: NotificationType.error, id: '' })
         });
   };
 
@@ -104,6 +115,7 @@ export default function App() {
             onKeyDown={handleOnKeyDown}
             onBlur={handleOnBlur}
         />
+
         {groceries.map((grocery, index) => {
           return (
               <div key={index} className="row">
