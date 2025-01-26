@@ -15,6 +15,7 @@ export function Avatars() {
             key={connectionId}
             name="Other"
             variant="beam"
+            width={40}
             colors={["#8D9C9D", "#E00B5B", "#F5B04B", "#FCDFBD", "#45373E"]}
           />
         );
@@ -27,6 +28,7 @@ export function Avatars() {
           <Avatar
             name="You"
             variant="beam"
+            width={40}
             colors={["#8D9C9D", "#E00B5B", "#F5B04B", "#FCDFBD", "#45373E"]}
           />
         </div>
