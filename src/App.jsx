@@ -1,18 +1,19 @@
-import { useState } from "react";
-import { NotificationType, useNotify } from "@yoavik/notify";
-import loader from "../assets/loader.svg";
 import {
+  useCanRedo,
+  useCanUndo,
+  useHistory,
+  useMutation,
   useStorage,
   useUpdateMyPresence,
-  useHistory,
-  useCanUndo,
-  useCanRedo,
 } from "@liveblocks/react";
+import { NotificationType, useNotify } from "@yoavik/notify";
+import { useState } from "react";
+import loader from "../assets/loader.svg";
 
 import { Avatars } from "./components/Avatars";
+import { Footer } from "./components/Footer";
 import { SomeoneIsTyping } from "./components/SomeoneIsTyping";
 import { WhoIsHere } from "./components/WhoIsHere";
-import { Footer } from "./components/Footer";
 
 import "./App.css";
 
@@ -23,14 +24,42 @@ export default function App() {
 
   const groceries = useStorage((root) => root.groceries);
 
-  console.log(">>> groceries: ", groceries);
-
   const { undo, redo } = useHistory();
   const canRedo = useCanRedo();
   const canUndo = useCanUndo();
   const { add } = useNotify();
 
-  if (groceries === null) {
+  // Mutation for adding an item
+  const addItem = useMutation(({ storage }, item) => {
+    const groceriesList = storage.get("groceries");
+    if (groceriesList) {
+      groceriesList.push(item);
+    } else {
+      console.error("Groceries list is not initialized!");
+    }
+  }, []);
+
+  // Mutation for updating an item
+  const updateItem = useMutation(({ storage }, index, newText) => {
+    const groceriesList = storage.get("groceries");
+    if (groceriesList) {
+      groceriesList.set(index, { text: newText });
+    } else {
+      console.error("Groceries list is not initialized!");
+    }
+  }, []);
+
+  // Mutation for deleting an item
+  const deleteItem = useMutation(({ storage }, index) => {
+    const groceriesList = storage.get("groceries");
+    if (groceriesList) {
+      groceriesList.delete(index);
+    } else {
+      console.error("Groceries list is not initialized!");
+    }
+  }, []);
+
+  if (!groceries) {
     return (
       <div className="loading">
         <img src={loader} alt="Loading" />
@@ -42,46 +71,39 @@ export default function App() {
     navigator.clipboard
       .writeText(textToCopy)
       .then(() => {
-        console.log("Text copied to clipboard.");
         add({
           title: "Info Notification",
           content: "Text copied to clipboard.",
           timeout: 5000,
           type: NotificationType.info,
-          id: "",
         });
       })
       .catch((error) => {
-        console.error("Error copying text to clipboard:", error);
         add({
           title: "Error Notification",
           content: `Error copying text to clipboard: ${error}`,
           timeout: 5000,
           type: NotificationType.error,
-          id: "",
         });
       });
   };
 
-  const fillTextInput = (elementIndex) => {
-    const textCopy = groceries.get(elementIndex).text;
+  const fillTextInput = (index) => {
+    const textCopy = groceries[index]?.text;
     setDraft(textCopy);
-    setEditItem(elementIndex);
+    setEditItem(index);
     copyToClipboard(textCopy);
   };
 
-  const addItem = (item) => groceries.push(item);
-
   const updateGroceriesList = (elementText) => {
-    if (elementText === "") {
-      return;
-    }
-    const currentItem = groceries.get(editItemIdx);
+    if (elementText === "") return;
 
-    if (currentItem) {
+    if (editItemIdx !== -1) {
+      // Update existing item
+      updateItem(editItemIdx, elementText);
       setEditItem(-1);
-      groceries.set(groceries.indexOf(currentItem), { text: elementText });
     } else {
+      // Add new item
       addItem({ text: elementText });
     }
   };
@@ -101,10 +123,6 @@ export default function App() {
 
   const handleOnBlur = () => {
     updateMyPresence({ isTyping: false });
-  };
-
-  const handleDeleteItem = (grocery) => {
-    groceries.delete(groceries.indexOf(grocery));
   };
 
   return (
@@ -137,25 +155,17 @@ export default function App() {
         onBlur={handleOnBlur}
       />
 
-      {groceries.map((grocery, index) => {
-        return (
-          <div key={index} className="row">
-            <div className="ordering">{index + 1}.</div>
-            <div
-              className="grocery"
-              onClick={() => fillTextInput(groceries.indexOf(grocery))}
-            >
-              {grocery.text}
-            </div>
-            <button
-              className="delete-button"
-              onClick={() => handleDeleteItem(grocery)}
-            >
-              ✕
-            </button>
+      {groceries.map((grocery, index) => (
+        <div key={index} className="row">
+          <div className="ordering">{index + 1}.</div>
+          <div className="grocery" onClick={() => fillTextInput(index)}>
+            {grocery.text}
           </div>
-        );
-      })}
+          <button className="delete-button" onClick={() => deleteItem(index)}>
+            ✕
+          </button>
+        </div>
+      ))}
       <Footer />
     </div>
   );
