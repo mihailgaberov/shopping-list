@@ -1,7 +1,13 @@
 import { useState } from "react";
-import { NotificationType, useNotify } from "@yoavik/notify"
+import { NotificationType, useNotify } from "@yoavik/notify";
 import loader from "../assets/loader.svg";
-import { useList, useUpdateMyPresence, useHistory, useCanUndo, useCanRedo } from "@liveblocks/react";
+import {
+  useStorage,
+  useUpdateMyPresence,
+  useHistory,
+  useCanUndo,
+  useCanRedo,
+} from "@liveblocks/react";
 
 import { Avatars } from "./components/Avatars";
 import { SomeoneIsTyping } from "./components/SomeoneIsTyping";
@@ -14,41 +20,51 @@ export default function App() {
   const [draft, setDraft] = useState("");
   const [editItemIdx, setEditItem] = useState(-1);
   const updateMyPresence = useUpdateMyPresence();
-  const groceries = useList("groceries");
+
+  const groceries = useStorage((root) => root.groceries);
+
+  console.log(">>> groceries: ", groceries);
+
   const { undo, redo } = useHistory();
   const canRedo = useCanRedo();
   const canUndo = useCanUndo();
-    const { add } = useNotify();
-
+  const { add } = useNotify();
 
   if (groceries === null) {
     return (
-        <div className="loading">
-          <img src={loader} alt="Loading"/>
-        </div>
+      <div className="loading">
+        <img src={loader} alt="Loading" />
+      </div>
     );
   }
 
   const copyToClipboard = (textToCopy) => {
-    navigator.clipboard.writeText(textToCopy)
-        .then(() => {
-          console.log('Text copied to clipboard.');
-            add({
-                title: 'Info Notification',
-                content: 'Text copied to clipboard.',
-                timeout: 5000,
-                type: NotificationType.info,
-                id: ""
-            });
-        })
-        .catch((error) => {
-          console.error('Error copying text to clipboard:', error);
-          add({ title: 'Error Notification', content: `Error copying text to clipboard: ${error}`, timeout: 5000, type: NotificationType.error, id: '' })
+    navigator.clipboard
+      .writeText(textToCopy)
+      .then(() => {
+        console.log("Text copied to clipboard.");
+        add({
+          title: "Info Notification",
+          content: "Text copied to clipboard.",
+          timeout: 5000,
+          type: NotificationType.info,
+          id: "",
         });
+      })
+      .catch((error) => {
+        console.error("Error copying text to clipboard:", error);
+        add({
+          title: "Error Notification",
+          content: `Error copying text to clipboard: ${error}`,
+          timeout: 5000,
+          type: NotificationType.error,
+          id: "",
+        });
+      });
   };
 
   const fillTextInput = (elementIndex) => {
-    const textCopy = groceries.get(elementIndex).text
+    const textCopy = groceries.get(elementIndex).text;
     setDraft(textCopy);
     setEditItem(elementIndex);
     copyToClipboard(textCopy);
@@ -84,52 +100,63 @@ export default function App() {
   };
 
   const handleOnBlur = () => {
-    updateMyPresence({ isTyping: false })
+    updateMyPresence({ isTyping: false });
   };
 
   const handleDeleteItem = (grocery) => {
-    groceries.delete(groceries.indexOf(grocery))
+    groceries.delete(groceries.indexOf(grocery));
   };
 
   return (
-      <div className="container">
-
-        <div className="history-controls">
-          <button className="manage-history-btn" onClick={() => undo()} disabled={!canUndo}>Undo</button>
-          <button className="manage-history-btn" onClick={() => redo()} disabled={!canRedo}>Redo</button>
-        </div>
-        <WhoIsHere/>
-        <SomeoneIsTyping/>
-        <Avatars/>
-        <input
-            type="text"
-            placeholder="What do you need to buy?"
-            value={draft}
-            onChange={handleOnChange}
-            onKeyDown={handleOnKeyDown}
-            onBlur={handleOnBlur}
-        />
-
-        {groceries.map((grocery, index) => {
-          return (
-              <div key={index} className="row">
-                <div className="ordering">{index + 1}.</div>
-                <div
-                    className="grocery"
-                    onClick={() => fillTextInput(groceries.indexOf(grocery))}
-                >
-                  {grocery.text}
-                </div>
-                <button
-                    className="delete-button"
-                    onClick={() => handleDeleteItem(grocery)}
-                >
-                  ✕
-                </button>
-              </div>
-          );
-        })}
-        <Footer/>
+    <div className="container">
+      <div className="history-controls">
+        <button
+          className="manage-history-btn"
+          onClick={() => undo()}
+          disabled={!canUndo}
+        >
+          Undo
+        </button>
+        <button
+          className="manage-history-btn"
+          onClick={() => redo()}
+          disabled={!canRedo}
+        >
+          Redo
+        </button>
       </div>
+      <WhoIsHere />
+      <SomeoneIsTyping />
+      <Avatars />
+      <input
+        type="text"
+        placeholder="What do you need to buy?"
+        value={draft}
+        onChange={handleOnChange}
+        onKeyDown={handleOnKeyDown}
+        onBlur={handleOnBlur}
+      />
+
+      {groceries.map((grocery, index) => {
+        return (
+          <div key={index} className="row">
+            <div className="ordering">{index + 1}.</div>
+            <div
+              className="grocery"
+              onClick={() => fillTextInput(groceries.indexOf(grocery))}
+            >
+              {grocery.text}
+            </div>
+            <button
+              className="delete-button"
+              onClick={() => handleDeleteItem(grocery)}
+            >
+              ✕
+            </button>
+          </div>
+        );
+      })}
+      <Footer />
+    </div>
   );
 }
