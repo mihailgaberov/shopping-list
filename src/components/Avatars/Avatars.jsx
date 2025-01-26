@@ -3,7 +3,7 @@ import { useOthers, useSelf } from "@liveblocks/react";
 import styles from "./avatars.module.scss";
 
 export function Avatars() {
-  const users = useOthers().toArray();
+  const users = useOthers((others) => others);
   const currentUser = useSelf();
   const hasMoreUsers = users.length > 3;
 

@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <LiveblocksProvider publicApiKey={API_KEY}>
       <RoomProvider
-        id="shoppingList"
+        id="newShoppingListRoom"
         initialStorage={{ groceries: new LiveList([]) }}
         initialPresence={{ groceries: [] }}
       >
