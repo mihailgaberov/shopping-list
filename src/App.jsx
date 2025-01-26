@@ -1,13 +1,7 @@
 import { useState } from "react";
 import { NotificationType, useNotify } from "@yoavik/notify"
 import loader from "../assets/loader.svg";
-import {
-  useList,
-  useUpdateMyPresence,
-  useHistory,
-    useCanUndo,
-  useCanRedo
-} from "./liveblocks.config";
+import { useList, useUpdateMyPresence, useHistory, useCanUndo, useCanRedo } from "@liveblocks/react";
 
 import { Avatars } from "./components/Avatars";
 import { SomeoneIsTyping } from "./components/SomeoneIsTyping";

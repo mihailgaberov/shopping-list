@@ -1,5 +1,5 @@
 import Avatar from "boring-avatars";
-import { useOthers, useSelf } from "../../liveblocks.config";
+import { useOthers, useSelf } from "@liveblocks/react";
 import styles from "./avatars.module.scss";
 
 export function Avatars() {

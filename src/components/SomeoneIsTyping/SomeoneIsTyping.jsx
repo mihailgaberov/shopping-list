@@ -1,4 +1,4 @@
-import { useOthers } from "../../liveblocks.config";
+import { useOthers } from "@liveblocks/react";
 import styles from "./someone-is-typing.module.scss";
 
 export function SomeoneIsTyping() {

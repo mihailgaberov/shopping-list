@@ -1,5 +1,5 @@
 import React from "react";
-import { useOthers } from "../../liveblocks.config";
+import { useOthers } from "@liveblocks/react";
 
 import styles from "./who-is-here.module.scss";
 
