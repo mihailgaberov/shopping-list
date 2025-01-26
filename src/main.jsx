@@ -9,7 +9,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
         <RoomProvider
             id="shoppingList"
-            initialStorage={{ groceries: new LiveList() }}
+            initialStorage={{ groceries: new LiveList([]) }}
             initialPresence={{ groceries: [] }}>
             <App/>
         </RoomProvider>
