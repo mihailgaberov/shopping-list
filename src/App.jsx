@@ -96,11 +96,9 @@ export default function App() {
     if (elementText === "") return;
 
     if (editItemIdx !== -1) {
-      // Update existing item
       updateItem(editItemIdx, elementText);
       setEditItem(-1);
     } else {
-      // Add new item
       addItem({ text: elementText });
     }
   };
