@@ -29,7 +29,6 @@ export default function App() {
   const canUndo = useCanUndo();
   const { add } = useNotify();
 
-  // Mutation for adding an item
   const addItem = useMutation(({ storage }, item) => {
     const groceriesList = storage.get("groceries");
     if (groceriesList) {
@@ -39,7 +38,6 @@ export default function App() {
     }
   }, []);
 
-  // Mutation for updating an item
   const updateItem = useMutation(({ storage }, index, newText) => {
     const groceriesList = storage.get("groceries");
     if (groceriesList) {
@@ -49,7 +47,6 @@ export default function App() {
     }
   }, []);
 
-  // Mutation for deleting an item
   const deleteItem = useMutation(({ storage }, index) => {
     const groceriesList = storage.get("groceries");
     if (groceriesList) {
